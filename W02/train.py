@@ -7,8 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
 mlflow.set_tracking_uri('sqlite:///mlflow.db')
-mlflow.set_experiment('homework')
-
+mlflow.set_experiment('HW02')
 mlflow.sklearn.autolog()
 
 def load_pickle(filename: str):
