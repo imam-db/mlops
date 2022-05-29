@@ -1,1 +1,5 @@
 *.parquet
+*.pkl
+*.db
+W02/mlruns
+mlruns
