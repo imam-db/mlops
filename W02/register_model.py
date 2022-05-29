@@ -61,9 +61,6 @@ def run(data_path, log_top):
     )
     
     for run in runs:
-        # logged_model = f'runs:/{run.info.run_id}/model'
-        # model = mlflow.sklearn.load_model(logged_model)
-        # train_and_log_model(data_path=data_path, model=model)
         train_and_log_model(data_path=data_path, params=run.data.params)
 
     # select the model with the lowest test RMSE
@@ -72,13 +69,13 @@ def run(data_path, log_top):
         experiment_ids=experiment.experiment_id,    # Experiment ID we want
         run_view_type=ViewType.ACTIVE_ONLY,
         max_results=log_top,
-        order_by=["metrics.test_rmse ASC"]
+        order_by=["metrics.rmse ASC"]
     )[0]
 
     # register said model
     run_id = best_run.info.run_id
     model_uri = f"runs:/{run_id}/models"
-    mlflow.register_model(model_uri=model_uri, name="nyc-registry")
+    mlflow.register_model(model_uri=model_uri, name="nyc-green-taxi-registry")
 
 
 if __name__ == '__main__':
